@@ -1,10 +1,36 @@
+import { useState } from "react";
 import "./App.css";
-import Note from "./components/Note";
+import NoteForm from "./components/NoteForm";
+import Notes from "./components/Notes";
 
 function App() {
+  const [notes, setNotes] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [noteTitle, setNoteTitle] = useState("");
+  const [editableNote, setEditableNote] = useState(null);
+
   return (
     <>
-      <Note />
+      <NoteForm
+        notes={notes}
+        setNotes={setNotes}
+        setEditMode={setEditMode}
+        editMode={editMode}
+        noteTitle={noteTitle}
+        setNoteTitle={setNoteTitle}
+        editableNote={editableNote}
+        setEditableNote={setEditableNote}
+      />
+      <Notes
+        notes={notes}
+        setNotes={setNotes}
+        setEditMode={setEditMode}
+        editMode={editMode}
+        noteTitle={noteTitle}
+        setNoteTitle={setNoteTitle}
+        editableNote={editableNote}
+        setEditableNote={setEditableNote}
+      />
     </>
   );
 }
