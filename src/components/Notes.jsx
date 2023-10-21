@@ -1,31 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StudentData } from "../context/StudentContext";
 
-export default function Notes({
-  setNotes,
-  notes,
-  setEditMode,
-  setNoteTitle,
-  setEditableNote,
-}) {
-  const removeHandler = (noteId) => {
-    const newNotes = notes.filter((note) => note.id !== noteId);
-
-    setNotes(newNotes);
-  };
-
-  const editHandler = (note) => {
-    setEditMode(true);
-    setNoteTitle(note.title);
-    setEditableNote(note);
-  };
+export default function Notes() {
+  const studCtx = useContext(StudentData);
   return (
     <div className="App">
       <ol className="note-list">
-        {notes.map((note) => (
+        {studCtx.notes.map((note) => (
           <li key={note.id}>
             <span>{note.title}</span>
-            <button onClick={() => editHandler(note)}>Edit</button>
-            <button onClick={() => removeHandler(note.id)}>Remove</button>
+            <button onClick={() => studCtx.editHandler(note)}>Edit</button>
+            <button onClick={() => studCtx.removeHandler(note.id)}>
+              Remove
+            </button>
           </li>
         ))}
       </ol>
